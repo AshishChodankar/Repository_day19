@@ -1,34 +1,44 @@
+import { Component, useState } from "react";
+
 export default function App() {
   return (
     <>
-      <MyComponent />
+      <HiComponent />
     </>
   );
 }
 
-function MyComponent() {
-  let username = "rohit";
-  let email = "rohit@gmail.com";
-  let id = 100;
-  let list = ["delhi", "culcutta", "chennai"];
+function HiComponent() {
+  const id1 = 100;
+  const list = [1, 1, 1, 1, 1];
+  const [cardCss, setCardcss] = useState("bg-primary text-light fs-3 p-4 mb-1");
 
-  let obj = { id: 1, name: "rahul" };
-
+  const primaryTheme = () => setCardcss("bg-primary text-light fs-3 p-4 mb-1");
+  const darkTheme = () => setCardcss("bg-dark text-light fs-3 p-4 mb-1");
+  const dangerTheme = () => setCardcss("bg-danger text-light fs-3 p-4 mb-1");
   return (
     <div>
-      <h1>Learning Interpolation {"delhi".toUpperCase()}</h1>
-      <h1>
-        {username}
-        {email}
-        {id}
-      </h1>
-      <h1>{list}</h1>
-      <h1>
-        {obj.id}
-        {obj.name}
-        {`I am also JS ${obj.id} and ${obj.name}`}
-      </h1>
-      <p>Ashish is a brilliant guy.</p>
+      <input
+        type="button"
+        value="Primary Theme"
+        className="btn btn-primary btn-sm"
+        onClick={primaryTheme}
+      />
+      <input
+        type="button"
+        value="PrimaryTheme"
+        className="btn btn-dark btn-sm"
+        onClick={darkTheme}
+      />
+      <input
+        type="button"
+        value="PrimaryTheme"
+        className="btn btn-dark btn-sm"
+        onClick={dangerTheme}
+      />
+      {list.map(() => (
+        <div className={cardCss}>Ashish is a smart,brilliant guy.{cardCss}</div>
+      ))}
     </div>
   );
 }
