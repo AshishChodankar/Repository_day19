@@ -8,16 +8,11 @@ export default function App() {
 }
 
 function MyComponent() {
-  const [list] = useState(["Hello World"]);
-  return (
-    <div>
-      <h1>Working with Input Elements</h1>
-      <input type="button" value="Tweet to Everyone" />
-      <div id="parent">
-        {list.map((item) => (
-          <div>{item} </div>
-        ))}
-      </div>
-    </div>
-  );
+  const [list, setList] = useState(["Hello World"]);
+  const tweetHere = () => {
+    const newList = [...list, "Hello Universe"];
+    setList(newList);
+  };
+
+  const deleteFirstTweet = () => {};
 }
