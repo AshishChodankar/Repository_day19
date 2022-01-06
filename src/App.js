@@ -8,30 +8,34 @@ export default function App() {
 }
 
 function MyComponent() {
-  const [list, setList] = useState(["Hello World"]);
-  const tweetHere = () => {
-    const newList = [...list, "Hello Universe"];
-    setList(newList);
+  const [message, setMessage] = useState("");
+  const [messageList, setMessageList] = useState([]);
+
+  const processMessage = (e) => {
+    const newMessage = e.target.value;
+    setMessage(newMessage);
   };
-  const deleteFirstTweet = () => {
-    list.splice(0, 1);
-    const newList = [...list];
-    setList(newList);
+
+  const addTweet = () => {
+    console.log(message);
+    const newMessageList = [message, ...messageList];
+    setMessageList(newMessageList);
+    setMessage("");
   };
+
   return (
     <div>
-      <h1>Working with Input Element</h1>
-      <input type="button" value="Tweet to Everyone" onClick={tweetHere} />
+      <h1>Input Operation</h1>
       <input
-        type="button"
-        value="Delete First Tweet"
-        onClick={deleteFirstTweet}
+        type="text"
+        placeholder="Whats App...."
+        value={message}
+        onChange={processMessage}
       />
-      <div id="parent">
-        {list.map((item) => (
-          <div>{item}</div>
-        ))}
-      </div>
+      <input type="button" value="Tweet" onClick={addTweet} />
+      {messageList.map((item, index) => (
+        <div key={index}> {item}</div>
+      ))}
     </div>
   );
 }
